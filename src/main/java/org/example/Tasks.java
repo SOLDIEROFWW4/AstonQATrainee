@@ -1,4 +1,4 @@
-package src;
+package org.example;
 
 import java.util.Random;
 
@@ -21,7 +21,7 @@ public class Tasks {
 
         // Объявление переменной checkSumAnswer типа String
         // Переменная используется для вывода суммы переменных a и b и сравнения суммы с 0
-        // Вместо использования конструкции  if-else был использован тернарный оператора для облегчения конструкции
+        // Вместо использования конструкции if-else был использован тернарный оператора для облегчения конструкции
         String checkSumAnswer = (a + b >= 0) ? "Сумма положительная" : "Сумма отрицательная";
 
         // Вывод результата
@@ -144,10 +144,9 @@ public class Tasks {
     }
 
     //Задание 11
-    public static void fillArray() {
+    public static int[] fillArray() {
         // Объявляем одномерный массив array типа int, размерность массива это 100 элементов
         int[] array = new int[100];
-
 
         // Для заполнения массива числами от 1 до 100 используем цикл for
         // Начинаем цикл с переменной i, присвоив ей 0
@@ -156,11 +155,12 @@ public class Tasks {
         for (int i = 0; i < array.length; i++) {
             array[i] = i + 1;
         }
+
+        return array;
     }
 
-
     //Задание 12
-    public static void processArray() {
+    public static int[] processArray() {
         // Объявляем одномерный массив array типа int[]
         // Массив уже заполнен значениями по условию задания
         int[] array = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
@@ -176,6 +176,7 @@ public class Tasks {
                 array[i] = array[i] * 2;
             }
         }
+        return array;
     }
 
     //Задание 13
