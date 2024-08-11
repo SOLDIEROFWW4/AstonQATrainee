@@ -159,18 +159,6 @@ public class Tasks {
                 binaryArray[i] = 0;
             }
         }
-
-
-        // Для вывода значений элементов массива был использован цикл for
-        // Начинаем цикл с переменной i со значением 0.
-        // Выполняем цикл, пока переменная i меньше длины массива binaryArray.
-        // Прибавляем к ней по 1 и на каждом шаге
-        for (int i = 0; i < binaryArray.length; i++) {
-            // При каждом действии выводим текущее значение i с пробелом
-            System.out.print(i + " ");
-        }
-        // После завершения цикла for оставляет пустую строку для перехода на новую
-        System.out.println();
     }
 
     //Задание 11
@@ -277,5 +265,12 @@ public class Tasks {
         // После завершения цикла for оставляет пустую строку для перехода на новую
         System.out.println();
         return array;
+    }
+
+    public static void printArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
     }
 }
