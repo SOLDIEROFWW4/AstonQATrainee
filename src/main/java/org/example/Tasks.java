@@ -126,37 +126,19 @@ public class Tasks {
     }
 
     //Задание 10
-    public static void invertBinaryArray(int size) {
-        // В качестве параметра метода передаётся переменная size типа int
-        // Идёт объявление одномерного массива binaryArray типа int
-        // За размерность массива отвечает переменная size
-        int[] binaryArray = new int[size];
-        // Для того, чтобы массив заполнялся только 0 и 1 был использован класс Random
-        // Создаётся экземпляр класса Random с именем random
-        Random random = new Random();
-
-        // Для заполнения массива числами 0 и 1 был добавлен цикл for
-        // int i = 0 - начальная точка цикла, i < binaryArray.length (размер массива) - условие выхода из цикла, i++ - оператор счётчика
-        // В теле цикла for создаётся переменная i со значением 0, пока значение переменной не достигнет значения binaryArray.length,
-        // прибавляя к ней по 1 и на каждом шаге, массив binaryArray будет заполняться числами 0 или 1
-        for (int i = 0; i < binaryArray.length; i++) {
-            // Значение i массива binaryArray заполняется числами 0 или 1 благодаря экземпляру класса random с использованием
-            // метода nextInt, 2 служит для ограничения двух значений 0 или 1
-            binaryArray[i] = random.nextInt(2);
-        }
-
+    public static void invertBinaryArray(int[] array) {
         // Для замены значений массива на противоположные был добавлен цикл for
         // int i = 0 - начальная точка цикла, i < binaryArray.length (размер массива) - условие выхода из цикла, i++ - оператор счётчика
         // В теле цикла for создаётся переменная i со значением 0, пока значение переменной не достигнет значения binaryArray.length,
         // прибавляя к ней по 1 и на каждом шаге
-        for (int i = 0; i < binaryArray.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             // Если значение i массива binaryArray равно 0
-            if (binaryArray[i] == 0) {
+            if (array[i] == 0) {
                 // заменяется на 1
-                binaryArray[i] = 1;
+                array[i] = 1;
                 // В противном случае остаётся 0
             } else {
-                binaryArray[i] = 0;
+                array[i] = 0;
             }
         }
     }
@@ -272,5 +254,26 @@ public class Tasks {
             System.out.print(i + " ");
         }
         System.out.println();
+    }
+
+    public static int[] createBinaryArray(int size) {
+        // В качестве параметра метода передаётся переменная size типа int
+        // Идёт объявление одномерного массива binaryArray типа int
+        // За размерность массива отвечает переменная size
+        int[] binaryArray = new int[size];
+        // Для того, чтобы массив заполнялся только 0 и 1 был использован класс Random
+        // Создаётся экземпляр класса Random с именем random
+        Random random = new Random();
+
+        // Для заполнения массива числами 0 и 1 был добавлен цикл for
+        // int i = 0 - начальная точка цикла, i < binaryArray.length (размер массива) - условие выхода из цикла, i++ - оператор счётчика
+        // В теле цикла for создаётся переменная i со значением 0, пока значение переменной не достигнет значения binaryArray.length,
+        // прибавляя к ней по 1 и на каждом шаге, массив binaryArray будет заполняться числами 0 или 1
+        for (int i = 0; i < binaryArray.length; i++) {
+            // Значение i массива binaryArray заполняется числами 0 или 1 благодаря экземпляру класса random с использованием
+            // метода nextInt, 2 служит для ограничения двух значений 0 или 1
+            binaryArray[i] = random.nextInt(2);
+        }
+        return binaryArray;
     }
 }
