@@ -1,4 +1,4 @@
-package org.example;
+package ru.astondev.lesson2;
 
 import java.util.Random;
 
