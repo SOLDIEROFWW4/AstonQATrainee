@@ -61,6 +61,7 @@ public class Main {
         Utility.printTask(13, "fillDiagonals");
         int size2DArray = Utility.getIntInput(scanner, "Введите размер двумерного массива: ");
         int[][] array = new int[size2DArray][size2DArray];
+        Tasks.fillDiagonals(array);
         Utility.printResult();
         Tasks.print2DArray(array);
 
