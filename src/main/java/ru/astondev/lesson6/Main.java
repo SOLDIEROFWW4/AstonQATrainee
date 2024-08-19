@@ -14,5 +14,13 @@ public class Main {
             employee.printInfo();
             System.out.println();
         }
+
+        Park park = new Park("Example Park");
+        Park.Attraction rollerCoaster = park.new Attraction("Roller Coaster", "12:00", "19:00", 10);
+        Park.Attraction ferrisWheel = park.new Attraction("Ferris Wheel", "14:00", "20:00", 20);
+
+        rollerCoaster.printInfo();
+        System.out.println();
+        ferrisWheel.printInfo();
     }
 }

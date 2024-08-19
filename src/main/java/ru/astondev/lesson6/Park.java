@@ -42,7 +42,5 @@ public class Park {
         private String getFormattedTime(Date time) {
             return time != null ? timeFormat.format(time) : "Invalid Time";
         }
-
-
     }
 }
