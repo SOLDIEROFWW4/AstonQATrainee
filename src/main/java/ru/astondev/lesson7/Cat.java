@@ -26,4 +26,22 @@ public class Cat extends Animal{
     public void swim(int distance) {
         System.out.println(getName() + " не умеет плавать.");
     }
+
+    public void eat(Bowl bowl, int foodAmount) {
+        if (bowl.getFood() >= foodAmount) {
+            bowl.decreaseFood(foodAmount);
+            setSatiety(true);
+            System.out.println(getName() + " теперь сыт.");
+        } else {
+            System.out.println(getName() + " не хватило еды.");
+        }
+    }
+
+    public boolean isSatiety() {
+        return satiety;
+    }
+
+    public void setSatiety(boolean satiety) {
+        this.satiety = satiety;
+    }
 }
