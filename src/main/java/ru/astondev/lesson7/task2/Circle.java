@@ -1,4 +1,4 @@
-package ru.astondev.lesson7;
+package ru.astondev.lesson7.task2;
 
 public class Circle extends BaseShape{
     private double radius;

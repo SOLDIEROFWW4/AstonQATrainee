@@ -1,4 +1,4 @@
-package ru.astondev.lesson7;
+package ru.astondev.lesson7.task1;
 
 public class Bowl {
     private int food;

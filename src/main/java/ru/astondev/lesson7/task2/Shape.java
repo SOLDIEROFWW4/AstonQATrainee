@@ -1,6 +1,6 @@
-package ru.astondev.lesson7;
+package ru.astondev.lesson7.task2;
 
-interface Shape {
+public interface Shape {
     double getPerimeter();
     double getArea();
     String getFillColor();

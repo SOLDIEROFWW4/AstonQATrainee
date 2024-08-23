@@ -1,4 +1,4 @@
-package ru.astondev.lesson7;
+package ru.astondev.lesson7.task2;
 
 public class Triangle extends BaseShape{
     private double sideA;

@@ -1,4 +1,4 @@
-package ru.astondev.lesson7;
+package ru.astondev.lesson7.task2;
 
 abstract class BaseShape implements Shape {
    private String fillColor;

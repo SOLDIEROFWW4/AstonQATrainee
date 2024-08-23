@@ -1,4 +1,4 @@
-package ru.astondev.lesson7;
+package ru.astondev.lesson7.task1;
 
 public class Cat extends Animal{
     static int totalCats = 0;
