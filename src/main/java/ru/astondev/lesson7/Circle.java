@@ -3,7 +3,7 @@ package ru.astondev.lesson7;
 public class Circle extends BaseShape{
     private double radius;
 
-    public Circle(String fillColor, String borderColor) {
+    public Circle(String fillColor, String borderColor, double radius) {
         super(fillColor, borderColor);
         this.radius = radius;
     }
