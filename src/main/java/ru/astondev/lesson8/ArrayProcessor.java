@@ -18,4 +18,16 @@ public class ArrayProcessor extends ArrayHandler{
             throw new MyArrayDataException("Неверные данные в (строке: " + row + ", столбце:" + col + "): " + element);
         }
     }
+
+    public int processArray(String[][] array) throws MyArraySizeException, MyArrayDataException {
+        validateArraySize(array);
+
+        int sum = 0;
+        for (int i = 0; i < ARRAY_SIZE; i++) {
+            for (int j=0; j <ARRAY_SIZE; j++) {
+                sum+= parseElement(array[i][j], i, j);
+            }
+        }
+        return sum;
+    }
 }
