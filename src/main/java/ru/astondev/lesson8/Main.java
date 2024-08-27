@@ -16,8 +16,11 @@ public class Main {
                 {"13", "14", "15", "16"}
         };
 
+        // Вызов экземпляра класса ArrayProcessor для работы с массивами
         ArrayProcessor arrayProcessor = new ArrayProcessor();
 
+        // В конструкции try-catch проводим проверку массива validArray и суммируем его элементы
+        // В случае ошибке, в блоке catch срабатывает исключение MyArraySizeException или MyArrayDataException
         try {
             int sum = arrayProcessor.processArray(validArray);
             System.out.println("Sum: " + sum);
@@ -25,6 +28,8 @@ public class Main {
             System.err.println(e.getMessage());
         }
 
+        // В конструкции try-catch проводим проверку массива invalidArray и суммируем его элементы
+        // В случае ошибке, в блоке catch срабатывает исключение MyArraySizeException или MyArrayDataException
         try {
             int sum = arrayProcessor.processArray(invalidDataArray);
             System.out.println("Sum: " + sum);
