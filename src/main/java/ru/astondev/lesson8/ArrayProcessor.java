@@ -1,4 +1,5 @@
 package ru.astondev.lesson8;
+
 // Создаём класс ArrayProcessor для того, чтобы задать логику поведения массива; наследуется от абстрактного класса ArrayHandler
 public class ArrayProcessor extends ArrayHandler {
     // Объявляем переменную для размера массива (по ТЗ)
