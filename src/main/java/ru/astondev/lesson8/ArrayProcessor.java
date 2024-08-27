@@ -1,6 +1,6 @@
 package ru.astondev.lesson8;
 
-public class ArrayProcessor extends ArrayHandler{
+public class ArrayProcessor extends ArrayHandler {
     private static final int ARRAY_SIZE = 4;
 
     @Override
@@ -14,7 +14,7 @@ public class ArrayProcessor extends ArrayHandler{
     protected int parseElement(String element, int row, int col) throws MyArrayDataException {
         try {
             return Integer.parseInt(element);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new MyArrayDataException("Неверные данные в (строке: " + row + ", столбце:" + col + "): " + element);
         }
     }
@@ -24,8 +24,8 @@ public class ArrayProcessor extends ArrayHandler{
 
         int sum = 0;
         for (int i = 0; i < ARRAY_SIZE; i++) {
-            for (int j=0; j <ARRAY_SIZE; j++) {
-                sum+= parseElement(array[i][j], i, j);
+            for (int j = 0; j < ARRAY_SIZE; j++) {
+                sum += parseElement(array[i][j], i, j);
             }
         }
         return sum;
