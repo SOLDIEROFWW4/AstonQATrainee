@@ -1,6 +1,5 @@
-package ru.astondev.lesson11;
+package ru.astondev.lesson11.task1;
 
-import java.awt.*;
 import java.util.*;
 
 public class WordProcessor {
