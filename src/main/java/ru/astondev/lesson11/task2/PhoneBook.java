@@ -5,7 +5,7 @@ import java.util.*;
 public class PhoneBook {
     private Map<String, List<String>> contacts;
 
-    private PhoneBook() {
+    public PhoneBook() {
         contacts = new HashMap<>();
     }
 
