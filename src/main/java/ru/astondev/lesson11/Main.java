@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
+        // Задание 1
         /* String[] words = {
                 "apple", "banana", "apple", "orange", "banana",
                 "kiwi", "apple", "pear", "kiwi", "banana"
@@ -24,6 +25,7 @@ public class Main {
             System.out.println(entry.getKey() + ": " + entry.getValue() + " раз(а)");
         } */
 
+        // Задание 2
         PhoneBook phoneBook = new PhoneBook();
         phoneBook.add("Ivanov", "123-456");
         phoneBook.add("Petrov", "234-567");
