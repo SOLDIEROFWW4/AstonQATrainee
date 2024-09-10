@@ -120,7 +120,7 @@
 
 ## Пометка по выполнению программного кода:
 * Запуск тестов производится из пакета lesson12_TestNG, либо из lesson12_JUnit5;
-* Установленные библиотеки: jcommander (version 2.0), slf4j-api (version 2.0.16), testng (version 7.10.2).
+* Установленные библиотеки: jcommander (version 2.0), slf4j-api (version 2.0.16), testng (version 7.10.2), junit (version 4.13.2).
 
 ## Java файлы и их описание:
 
