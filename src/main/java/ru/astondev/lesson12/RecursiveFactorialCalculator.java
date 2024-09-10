@@ -1,4 +1,4 @@
-package ru.astondev.lesson12_TestNG;
+package ru.astondev.lesson12;
 
 public class RecursiveFactorialCalculator implements FactorialCalculator{
     @Override

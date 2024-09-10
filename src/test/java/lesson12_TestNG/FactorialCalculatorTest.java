@@ -3,8 +3,8 @@ package lesson12_TestNG;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.astondev.lesson12_TestNG.FactorialCalculator;
-import ru.astondev.lesson12_TestNG.RecursiveFactorialCalculator;
+import ru.astondev.lesson12.FactorialCalculator;
+import ru.astondev.lesson12.RecursiveFactorialCalculator;
 
 public class FactorialCalculatorTest {
 
