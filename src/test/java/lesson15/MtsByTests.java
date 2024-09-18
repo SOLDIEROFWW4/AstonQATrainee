@@ -38,31 +38,38 @@ public class MtsByTests {
 
     @Test
     public void testPaymentVisaLogo() {
-        WebElement paymentVisaLogo = webDriver.findElement(new By.ByXPath(""));
+        WebElement paymentVisaLogo = webDriver.findElement(new By.ByXPath("//section/div/div[2]/ul/li[1]"));
         assertTrue(paymentVisaLogo.isDisplayed());
     }
 
     @Test
     public void testPaymentVerifiedByVisaLogo() {
-        WebElement paymentVerifiedByVisaLogo = webDriver.findElement(new By.ByXPath(""));
+        WebElement paymentVerifiedByVisaLogo = webDriver.findElement(new By.ByXPath("//section/div/div[2]/ul/li[2]"));
         assertTrue(paymentVerifiedByVisaLogo.isDisplayed());
     }
 
     @Test
     public void testPaymentMastercardLogo() {
-        WebElement paymentMastercardLogo = webDriver.findElement(new By.ByXPath(""));
+        WebElement paymentMastercardLogo = webDriver.findElement(new By.ByXPath("//section/div/div[2]/ul/li[3]"));
         assertTrue(paymentMastercardLogo.isDisplayed());
     }
 
     @Test
     public void testPaymentMastercardSecureCodeLogo() {
-        WebElement paymentMastercardSecureCodeLogo = webDriver.findElement(new By.ByXPath(""));
+        WebElement paymentMastercardSecureCodeLogo = webDriver.findElement(new By.ByXPath("//section/div/div[2]/ul/li[4]"));
         assertTrue(paymentMastercardSecureCodeLogo.isDisplayed());
     }
 
     @Test
     public void testPaymentBelcardLogo() {
-        WebElement paymentBelcardLogo = webDriver.findElement(new By.ByXPath(""));
+        WebElement paymentBelcardLogo = webDriver.findElement(new By.ByXPath("//section/div/div[2]/ul/li[5]"));
         assertTrue(paymentBelcardLogo.isDisplayed());
+    }
+
+    @Test
+    public void testLearnMoreLink() {
+        WebElement learnMoreLinks = webDriver.findElement(new By.ByXPath("//div[2]/section/div/a"));
+        learnMoreLinks.click();
+        assertEquals("https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/", webDriver.getCurrentUrl());
     }
 }
