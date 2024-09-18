@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.*;
 
 public class MtsByTests {
@@ -19,6 +21,7 @@ public class MtsByTests {
     @BeforeEach
     public void setUp() {
         webDriver = new ChromeDriver();
+        webDriver.manage().timeouts().pageLoadTimeout(35, TimeUnit.SECONDS);
         webDriver.get(path);
     }
 
