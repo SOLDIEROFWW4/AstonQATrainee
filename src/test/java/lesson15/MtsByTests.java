@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import ru.astondev.lesson15.TestHelper;
 
 import java.util.concurrent.TimeUnit;
 
@@ -36,13 +37,13 @@ public class MtsByTests {
     @Test
     public void testBlockTitle() {
         WebElement blockTitle = webDriver.findElement(new By.ByXPath("/html/body//div/div/div[2]/section/div/h2"));
-        assertEquals("Онлайн пополнение\nбез комиссии", blockTitle.getText());
+        TestHelper.assertTextEquals("Онлайн пополнение\nбез комиссии", blockTitle.getText(), "Заголовок блока не соответствует ожидаемому");
     }
 
     @Test
     public void testPaymentVisaLogo() {
         WebElement paymentVisaLogo = webDriver.findElement(new By.ByXPath("//section/div/div[2]/ul/li[1]"));
-        assertTrue(paymentVisaLogo.isDisplayed());
+        TestHelper.assertElementDisplayed(paymentVisaLogo, "Логотип платёжной системы Visa не отображается");
     }
 
     @Test
