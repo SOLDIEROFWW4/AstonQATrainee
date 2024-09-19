@@ -75,4 +75,10 @@ public class MtsByTests {
         learnMoreLinks.click();
         assertEquals("https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/", webDriver.getCurrentUrl());
     }
+
+    @Test
+    public void testContinueButton() {
+        WebElement paymentSection = webDriver.findElement(new By.ByXPath("//div[2]/section"));
+        
+    }
 }
