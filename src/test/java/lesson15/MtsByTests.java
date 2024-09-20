@@ -5,6 +5,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,6 +25,7 @@ public class MtsByTests {
         webDriver = new ChromeDriver();
         webDriver.manage().timeouts().pageLoadTimeout(35, TimeUnit.SECONDS);
         webDriver.get(path);
+        handleCookiePopup();
     }
 
 
@@ -31,6 +33,18 @@ public class MtsByTests {
     public void tearDown() {
         if (webDriver != null) {
             webDriver.quit();
+        }
+    }
+
+    public void handleCookiePopup() {
+        try {
+            WebElement cookieButton = webDriver.findElement(By.xpath("//div/div[2]/button[3]"));
+            if (cookieButton.isDisplayed()) {
+                cookieButton.click();
+                System.out.println("Cookie окно найдено и закрыто.");
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("Cookie окно не найдено. Продолжаем выполнение тестов.");
         }
     }
 
@@ -49,25 +63,25 @@ public class MtsByTests {
     @Test
     public void testPaymentVerifiedByVisaLogo() {
         WebElement paymentVerifiedByVisaLogo = webDriver.findElement(new By.ByXPath("//section/div/div[2]/ul/li[2]"));
-        assertTrue(paymentVerifiedByVisaLogo.isDisplayed());
+        TestHelper.assertElementDisplayed(paymentVerifiedByVisaLogo, "Логотип платёжной системы Verified By Visa не отображается");
     }
 
     @Test
     public void testPaymentMastercardLogo() {
         WebElement paymentMastercardLogo = webDriver.findElement(new By.ByXPath("//section/div/div[2]/ul/li[3]"));
-        assertTrue(paymentMastercardLogo.isDisplayed());
+        TestHelper.assertElementDisplayed(paymentMastercardLogo, "Логотип платёжной системы Mastercard не отображается");
     }
 
     @Test
     public void testPaymentMastercardSecureCodeLogo() {
         WebElement paymentMastercardSecureCodeLogo = webDriver.findElement(new By.ByXPath("//section/div/div[2]/ul/li[4]"));
-        assertTrue(paymentMastercardSecureCodeLogo.isDisplayed());
+        TestHelper.assertElementDisplayed(paymentMastercardSecureCodeLogo, "Логотип платёжной системы Mastercard Secure не отображается");
     }
 
     @Test
     public void testPaymentBelcardLogo() {
         WebElement paymentBelcardLogo = webDriver.findElement(new By.ByXPath("//section/div/div[2]/ul/li[5]"));
-        assertTrue(paymentBelcardLogo.isDisplayed());
+        TestHelper.assertElementDisplayed(paymentBelcardLogo, "Логотип платёжной системы Belcard не отображается");
     }
 
     @Test
@@ -78,11 +92,9 @@ public class MtsByTests {
     }
 
     @Test
-    public void testContinueButton() {
-        WebElement paymentSection = webDriver.findElement(new By.ByXPath("//div[2]/section"));
-        paymentSection.click();
-
+    public void testPaymentSection() {
         WebElement phoneNumberField = webDriver.findElement(new By.ByXPath("//div[2]/form[1]/div[1]/input"));
+        phoneNumberField.click();
         phoneNumberField.sendKeys("297777777");
 
         WebElement paymentField = webDriver.findElement(new By.ByXPath("//div[2]/form[1]/div[2]/input"));
