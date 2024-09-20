@@ -80,6 +80,27 @@ public class MtsByTests {
     @Test
     public void testContinueButton() {
         WebElement paymentSection = webDriver.findElement(new By.ByXPath("//div[2]/section"));
+        paymentSection.click();
+
+        WebElement phoneNumberField = webDriver.findElement(new By.ByXPath("//div[2]/form[1]/div[1]/input"));
+        phoneNumberField.sendKeys("297777777");
+
+        WebElement paymentField = webDriver.findElement(new By.ByXPath("//div[2]/form[1]/div[2]/input"));
+        paymentField.sendKeys("5");
+
+        WebElement emailField = webDriver.findElement(new By.ByXPath("//div[2]/form[1]/div[3]/input"));
+        emailField.sendKeys("example@gmail.com");
+
+        WebElement continueButton = webDriver.findElement(new By.ByXPath("//div[2]/form[1]/button"));
+        continueButton.click();
+
+        webDriver.switchTo().frame("//div[9]/div/iframe");
+
+        WebElement submitSection = webDriver.findElement(new By.ByXPath("//app-card-input"));
+
+        assertTrue(submitSection.isDisplayed());
+
+        webDriver.switchTo().defaultContent();
         
     }
 }
