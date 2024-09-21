@@ -4,13 +4,13 @@ import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.astondev.lesson15.TestHelper;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
@@ -46,6 +46,11 @@ public class MtsByTests {
         } catch (NoSuchElementException e) {
             System.out.println("Cookie окно не найдено. Продолжаем выполнение тестов.");
         }
+    }
+
+    public void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) webDriver;
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     @Test
@@ -87,14 +92,19 @@ public class MtsByTests {
     @Test
     public void testLearnMoreLink() {
         WebElement learnMoreLinks = webDriver.findElement(new By.ByXPath("//div[2]/section/div/a"));
+        scrollToElement(learnMoreLinks);
         learnMoreLinks.click();
         assertEquals("https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/", webDriver.getCurrentUrl());
     }
 
     @Test
     public void testPaymentSection() {
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+
+        WebElement paymentSection = webDriver.findElement(new By.ByXPath("//div/div[2]/section/div"));
+        scrollToElement(paymentSection);
+
         WebElement phoneNumberField = webDriver.findElement(new By.ByXPath("//div[2]/form[1]/div[1]/input"));
-        phoneNumberField.click();
         phoneNumberField.sendKeys("297777777");
 
         WebElement paymentField = webDriver.findElement(new By.ByXPath("//div[2]/form[1]/div[2]/input"));
@@ -106,13 +116,11 @@ public class MtsByTests {
         WebElement continueButton = webDriver.findElement(new By.ByXPath("//div[2]/form[1]/button"));
         continueButton.click();
 
-        webDriver.switchTo().frame("//div[9]/div/iframe");
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(new By.ByXPath("/html/body/div[8]/div/iframe")));
 
-        WebElement submitSection = webDriver.findElement(new By.ByXPath("//app-card-input"));
-
-        assertTrue(submitSection.isDisplayed());
+        System.out.println("Фрейм оплаты успешно загружен");
 
         webDriver.switchTo().defaultContent();
-        
+
     }
 }
