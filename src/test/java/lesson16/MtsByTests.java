@@ -7,6 +7,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.astondev.lesson16.FormValidator;
 
 import java.time.Duration;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class MtsByTests {
 
     private WebDriver webDriver;
+    private FormValidator formValidator = new FormValidator(webDriver);
     private static final String path = "https://www.mts.by/";
 
 
@@ -74,6 +76,9 @@ public class MtsByTests {
             } catch (ElementClickInterceptedException e) {
                 ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", option);
             }
+
+            // Проверка полей формы
+            formValidator.validateFormFields();
 
             // Открываем выпадающий список снова
             dropdownButton.click();
