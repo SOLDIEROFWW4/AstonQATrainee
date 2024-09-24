@@ -121,6 +121,5 @@ public class MtsByTests {
         System.out.println("Фрейм оплаты успешно загружен");
 
         webDriver.switchTo().defaultContent();
-
     }
 }

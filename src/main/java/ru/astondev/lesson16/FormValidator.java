@@ -56,8 +56,7 @@ public class FormValidator {
         String expectedPhonePlaceholder = "Номер абонента";
         if ("Рассрочка".equals(optionText)) {
             expectedPhonePlaceholder = "Номер счета на 44";
-        }
-        else if("Задолженность".equals(optionText)) {
+        } else if ("Задолженность".equals(optionText)) {
             expectedPhonePlaceholder = "Номер счета на 2073";
         }
 
