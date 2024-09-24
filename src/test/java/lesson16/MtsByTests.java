@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.astondev.lesson16.FormValidator;
+import ru.astondev.lesson16.TestHelper;
 
 import java.time.Duration;
 import java.util.List;
@@ -89,5 +90,50 @@ public class MtsByTests {
             // Ожидание, чтобы убедиться, что список снова стал видимым
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='select__item']/p[@class='select__option']")));
         }
+    }
+
+    @Test
+    public void testPaymentSection() {
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+
+        WebElement paymentSection = webDriver.findElement(By.xpath("//div/div[2]/section/div"));
+        scrollToElement(paymentSection);
+
+        WebElement phoneNumberField = webDriver.findElement(By.xpath("//div[2]/form[1]/div[1]/input"));
+        phoneNumberField.sendKeys("297777777");
+
+        WebElement paymentField = webDriver.findElement(By.xpath("//div[2]/form[1]/div[2]/input"));
+        paymentField.sendKeys("5");
+
+        WebElement emailField = webDriver.findElement(By.xpath("//div[2]/form[1]/div[3]/input"));
+        emailField.sendKeys("example@gmail.com");
+
+        WebElement continueButton = webDriver.findElement(By.xpath("//div[2]/form[1]/button"));
+        continueButton.click();
+
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("/html/body/div[8]/div/iframe")));
+
+        System.out.println("Фрейм оплаты успешно загружен");
+
+        WebElement amountElement = webDriver.findElement(By.xpath("//app-payment-container/section/div/div/div[1]"));
+        WebElement phoneElement = webDriver.findElement(By.xpath("//div[@class='pay-description__text']/span[contains(text(), 'Номер:')]"));
+
+        TestHelper.assertTextEquals("5.00 BYN", amountElement.getText(), "Некорректная сумма в окне оплаты");
+        TestHelper.assertTextEquals("Оплата: Услуги связи Номер:375297777777", phoneElement.getText().trim(), "Некорректный номер телефона в окне оплаты");
+
+        // Проверка наличия полей и иконок
+        WebElement cardNumberField = webDriver.findElement(By.id("cc-number"));
+        WebElement cardHolderField = webDriver.findElement(By.xpath("//input[@formcontrolname='holder']"));
+        WebElement expirationField = webDriver.findElement(By.xpath("//input[@formcontrolname='expirationDate']"));
+        WebElement cvcField = webDriver.findElement(By.xpath("//input[@formcontrolname='cvc']"));
+        WebElement paymentSystemIcons = webDriver.findElement(By.className("cards-brands__container"));
+
+        TestHelper.assertElementDisplayed(cardNumberField, "Поле ввода номера карты не отображается");
+        TestHelper.assertElementDisplayed(cardHolderField, "Поле ввода имени владельца карты не отображается");
+        TestHelper.assertElementDisplayed(expirationField, "Поле ввода срока действия карты не отображается");
+        TestHelper.assertElementDisplayed(cvcField, "Поле ввода CVC не отображается");
+        TestHelper.assertElementDisplayed(paymentSystemIcons, "Иконки платёжных систем не отображаются");
+
+        webDriver.switchTo().defaultContent();
     }
 }
