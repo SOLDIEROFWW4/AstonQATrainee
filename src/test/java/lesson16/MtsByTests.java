@@ -36,6 +36,7 @@ public class MtsByTests {
         }
     }
 
+    // Метод для принятия условий Cookie
     public void handleCookiePopup() {
         try {
             WebElement cookieButton = webDriver.findElement(By.xpath("//div/div[2]/button[3]"));
@@ -48,11 +49,13 @@ public class MtsByTests {
         }
     }
 
+    // Метод для прокрутки к форме оплаты услуг.
     public void scrollToElement(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
+    // Тест для проверки всех элементов выпадающего списка
     @Test
     public void testPaymentServicesDropdownOptions() {
         WebElement paymentSection = webDriver.findElement(By.xpath("//div/div[2]/section/div"));
@@ -92,13 +95,17 @@ public class MtsByTests {
         }
     }
 
+    // ТЕСТ РАБОТАЕТ ЛИШЬ В DEBUG!!! ПОМОГИТЕ ПОЖАЛУЙСТА РАЗОБРАТЬСЯ, ЧТО НЕ ТАК!!!
+    // Тест для заполнения полей формы оплаты услуг реквизитами и переход на iframe с проверкой его полей.
     @Test
     public void testPaymentSection() {
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(15));
 
+        // Поиск формы услуг и скроллинг на неё
         WebElement paymentSection = webDriver.findElement(By.xpath("//div/div[2]/section/div"));
         scrollToElement(paymentSection);
 
+        // Заполнение полей формы оплаты услуг реквизитами, данными по прошлому ТЗ
         WebElement phoneNumberField = webDriver.findElement(By.xpath("//div[2]/form[1]/div[1]/input"));
         phoneNumberField.sendKeys("297777777");
 
@@ -111,13 +118,16 @@ public class MtsByTests {
         WebElement continueButton = webDriver.findElement(By.xpath("//div[2]/form[1]/button"));
         continueButton.click();
 
+        // Ожидание и переключение на iframe
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("/html/body/div[8]/div/iframe")));
 
         System.out.println("Фрейм оплаты успешно загружен");
 
+        // Поиск элементов в iframe
         WebElement amountElement = webDriver.findElement(By.xpath("//app-payment-container/section/div/div/div[1]"));
         WebElement phoneElement = webDriver.findElement(By.xpath("//app-payment-container/section/div/div/div[2]"));
 
+        // Проверка данных в полях
         TestHelper.assertTextEquals("5.00 BYN", amountElement.getText(), "Некорректная сумма в окне оплаты");
         TestHelper.assertTextEquals("Оплата: Услуги связи Номер:375297777777", phoneElement.getText().trim(), "Некорректный номер телефона в окне оплаты");
 
@@ -134,6 +144,7 @@ public class MtsByTests {
         TestHelper.assertElementDisplayed(cvcField, "Поле ввода CVC не отображается");
         TestHelper.assertElementDisplayed(paymentSystemIcons, "Иконки платёжных систем не отображаются");
 
+        // Переключение с iframe
         webDriver.switchTo().defaultContent();
     }
 }
