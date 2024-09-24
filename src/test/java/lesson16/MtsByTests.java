@@ -54,21 +54,24 @@ public class MtsByTests {
 
     @Test
     public void testPaymentServicesDropdownOptions() {
-        WebElement paymentSection = webDriver.findElement(new By.ByXPath("//div/div[2]/section/div"));
+        WebElement paymentSection = webDriver.findElement(By.xpath("//div/div[2]/section/div"));
         scrollToElement(paymentSection);
-        WebElement dropdownButton = webDriver.findElement(new By.ByXPath("//section/div/div[1]/div[1]/div[2]/button"));
+        WebElement dropdownButton = webDriver.findElement(By.xpath("//section/div/div[1]/div[1]/div[2]/button"));
         dropdownButton.click();
 
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//section/div/div[1]/div[1]/div[2]/ul")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section/div/div[1]/div[1]/div[2]/ul")));
 
         List<WebElement> options = webDriver.findElements(By.xpath("//li[@class='select__item']/p[@class='select__option']"));
         System.out.println("Количество опций: " + options.size());
 
+        FormValidator formValidator = new FormValidator(webDriver);
+
         for (int i = 0; i < options.size(); i++) {
             options = webDriver.findElements(By.xpath("//li[@class='select__item']/p[@class='select__option']"));
             WebElement option = options.get(i);
-            System.out.println("Опция: " + option.getText());
+            String optionText = option.getText();
+            System.out.println("Опция: " + optionText);
 
             try {
                 scrollToElement(option);
@@ -78,10 +81,13 @@ public class MtsByTests {
             }
 
             // Проверка полей формы
-            formValidator.validateFormFields();
+            formValidator.validateFormFields(optionText);
 
             // Открываем выпадающий список снова
             dropdownButton.click();
+
+            // Ожидание, чтобы убедиться, что список снова стал видимым
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='select__item']/p[@class='select__option']")));
         }
     }
 }
