@@ -12,6 +12,8 @@ public class PostmanEchoTests {
 
     private final static String postmanEchoPath = "https://postman-echo.com";
 
+
+    // GET
     @Test
     public void givenArgs_whenGetArgs_thenStatus200() {
         RestAssured.baseURI = postmanEchoPath;
@@ -33,6 +35,7 @@ public class PostmanEchoTests {
 
     }
 
+    // POST (Raw Text)
     @Test
     public void whenRawTextCreated_thenStatus200() {
         RestAssured.baseURI = postmanEchoPath;
@@ -53,6 +56,7 @@ public class PostmanEchoTests {
                 .body("data", equalTo(rawText));
     }
 
+    // POST (Form Data)
     @Test
     public void whenPostFormData_thenStatus200() {
         RestAssured.baseURI = postmanEchoPath;
@@ -67,12 +71,13 @@ public class PostmanEchoTests {
         .when()
                 .post("/post")
         .then()
-                .statusCode(200) 
+                .statusCode(200)
                 .log().all()
                 .body("data.foo1", equalTo("bar1"))
                 .body("data.foo2", equalTo("bar2"));
     }
 
+    // PUT
     @Test
     public void whenUpdateText_thenStatus200() {
         RestAssured.baseURI = postmanEchoPath;
@@ -96,6 +101,7 @@ public class PostmanEchoTests {
         System.out.println(response.getBody().asString());
     }
 
+    // PATCH
     @Test
     public void whenSemiUpdateText_thenStatus200() {
         RestAssured.baseURI = postmanEchoPath;
@@ -120,6 +126,7 @@ public class PostmanEchoTests {
         System.out.println(response.getBody().asString());
     }
 
+    // DELETE
     @Test
     public void givenRawText_whenDeleteText_thenStatus200() {
         RestAssured.baseURI = postmanEchoPath;
