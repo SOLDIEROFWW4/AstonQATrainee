@@ -18,24 +18,24 @@ public class FormValidator {
 
     {
         fieldXPaths.put("Услуги связи", new String[]{
-                "//div[2]/form[1]/div[1]/input",
-                "//div[2]/form[1]/div[2]/input",
-                "//div[2]/form[1]/div[3]/input]"
+                "//input[@id='connection-phone']",
+                "//input[@id='connection-sum']",
+                "//input[@id='connection-email']"
         });
         fieldXPaths.put("Домашний интернет", new String[]{
-                "//div[2]/form[2]/div[1]/input",
-                "//div[2]/form[2]/div[2]/input",
-                "//div[2]/form[2]/div[3]/input"
+                "//input[@id='internet-phone']",
+                "//input[@id='internet-sum']",
+                "//input[@id='internet-email']"
         });
         fieldXPaths.put("Рассрочка", new String[]{
-                "//div[2]/form[3]/div[1]/input",
-                "//div[2]/form[3]/div[2]/input",
-                "//div[2]/form[3]/div[3]/input"
+                "//input[@id='score-instalment']",
+                "//input[@id='instalment-sum']",
+                "//input[@id='instalment-email']"
         });
         fieldXPaths.put("Задолженность", new String[]{
-                "//div[2]/form[4]/div[1]/input",
-                "//div[2]/form[4]/div[2]/input",
-                "//div[2]/form[4]/div[3]/input"
+                "//input[@id='score-arrears']",
+                "//input[@id='arrears-sum']",
+                "//input[@id='arrears-email']"
         });
     }
 
