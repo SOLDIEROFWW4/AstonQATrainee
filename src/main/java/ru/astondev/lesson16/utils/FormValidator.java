@@ -3,12 +3,15 @@ package ru.astondev.lesson16.utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
 public class FormValidator {
-    private WebDriver webDriver;
+    private final WebDriver webDriver;
 
     public FormValidator(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -40,14 +43,15 @@ public class FormValidator {
     }
 
     public void validateFormFields(String optionText) {
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(15));
         String[] ids = fieldXPaths.get(optionText);
         if (ids == null) {
             throw new NullPointerException("Идентификаторы не найдены для опции: " + optionText);
         }
 
-        WebElement phoneInput = webDriver.findElement(By.xpath(ids[0]));
-        WebElement sumInput = webDriver.findElement(By.xpath(ids[1]));
-        WebElement emailInput = webDriver.findElement(By.xpath(ids[2]));
+        WebElement phoneInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ids[0])));
+        WebElement sumInput  = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ids[1])));
+        WebElement emailInput  = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ids[2])));
 
         TestHelper.assertElementDisplayed(phoneInput, "Поле 'Номер' не отображается");
         TestHelper.assertElementDisplayed(sumInput, "Поле 'Сумма' не отображается");
