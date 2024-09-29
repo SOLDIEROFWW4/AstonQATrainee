@@ -10,12 +10,13 @@ import ru.astondev.lesson16.utils.TestHelper;
 import java.time.Duration;
 
 public class PaymentPage {
-    private WebDriver webDriver;
+    private final WebDriver webDriver;
 
     public PaymentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
+    // Заполняет форму оплаты данными, предложенными в ТЗ.
     public void fillPaymentForm(String phone, String sum, String email) {
         webDriver.findElement(By.xpath("//input[@id='connection-phone']")).sendKeys(phone);
         webDriver.findElement(By.xpath("//input[@id='connection-sum']")).sendKeys(sum);
@@ -23,6 +24,7 @@ public class PaymentPage {
         webDriver.findElement(By.xpath("//button[text()='Продолжить']")).click();
     }
 
+    // Переключается на iframe оплаты и выполняет проверки
     public void switchToPaymentFrameAndValidate() {
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//iframe[@class='bepaid-iframe']")));
@@ -32,9 +34,11 @@ public class PaymentPage {
         WebElement amountElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='pay-description__cost']")));
         WebElement phoneElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='pay-description__text']")));
 
+        // Проверка введённой суммы и номера телефона
         TestHelper.assertTextEquals("5.00 BYN", amountElement.getText(), "Некорректная сумма в окне оплаты");
         TestHelper.assertTextEquals("Оплата: Услуги связи Номер:375297777777", phoneElement.getText().trim(), "Некорректный номер телефона в окне оплаты");
 
+        // Проверка наличия полей для ввода данных карты
         WebElement cardNumberField = webDriver.findElement(By.xpath("//input[@formcontrolname='creditCard']"));
         WebElement cardHolderField = webDriver.findElement(By.xpath("//input[@formcontrolname='holder']"));
         WebElement expirationField = webDriver.findElement(By.xpath("//input[@formcontrolname='expirationDate']"));
@@ -47,6 +51,7 @@ public class PaymentPage {
         TestHelper.assertElementDisplayed(cvcField, "Поле ввода CVC не отображается");
         TestHelper.assertElementDisplayed(paymentSystemIcons, "Иконки платёжных систем не отображаются");
 
+        // Возврат на основной iframe
         webDriver.switchTo().defaultContent();
     }
 }
