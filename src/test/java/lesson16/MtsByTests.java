@@ -5,14 +5,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.astondev.lesson16.FormValidator;
+import ru.astondev.lesson16.utils.FormValidator;
 import ru.astondev.lesson16.pages.HomePage;
 import ru.astondev.lesson16.pages.PaymentPage;
 import ru.astondev.lesson16.utils.TestHelper;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
