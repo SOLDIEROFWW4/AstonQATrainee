@@ -1,14 +1,17 @@
-package ru.astondev.lesson16;
+package ru.astondev.lesson16.utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
 public class FormValidator {
-    private WebDriver webDriver;
+    private final WebDriver webDriver;
 
     public FormValidator(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -18,36 +21,37 @@ public class FormValidator {
 
     {
         fieldXPaths.put("Услуги связи", new String[]{
-                "//div[2]/form[1]/div[1]/input",
-                "//div[2]/form[1]/div[2]/input",
-                "//div[2]/form[1]/div[3]/input]"
+                "//input[@id='connection-phone']",
+                "//input[@id='connection-sum']",
+                "//input[@id='connection-email']"
         });
         fieldXPaths.put("Домашний интернет", new String[]{
-                "//div[2]/form[2]/div[1]/input",
-                "//div[2]/form[2]/div[2]/input",
-                "//div[2]/form[2]/div[3]/input"
+                "//input[@id='internet-phone']",
+                "//input[@id='internet-sum']",
+                "//input[@id='internet-email']"
         });
         fieldXPaths.put("Рассрочка", new String[]{
-                "//div[2]/form[3]/div[1]/input",
-                "//div[2]/form[3]/div[2]/input",
-                "//div[2]/form[3]/div[3]/input"
+                "//input[@id='score-instalment']",
+                "//input[@id='instalment-sum']",
+                "//input[@id='instalment-email']"
         });
         fieldXPaths.put("Задолженность", new String[]{
-                "//div[2]/form[4]/div[1]/input",
-                "//div[2]/form[4]/div[2]/input",
-                "//div[2]/form[4]/div[3]/input"
+                "//input[@id='score-arrears']",
+                "//input[@id='arrears-sum']",
+                "//input[@id='arrears-email']"
         });
     }
 
     public void validateFormFields(String optionText) {
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(15));
         String[] ids = fieldXPaths.get(optionText);
         if (ids == null) {
             throw new NullPointerException("Идентификаторы не найдены для опции: " + optionText);
         }
 
-        WebElement phoneInput = webDriver.findElement(By.xpath(ids[0]));
-        WebElement sumInput = webDriver.findElement(By.xpath(ids[1]));
-        WebElement emailInput = webDriver.findElement(By.xpath(ids[2]));
+        WebElement phoneInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ids[0])));
+        WebElement sumInput  = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ids[1])));
+        WebElement emailInput  = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ids[2])));
 
         TestHelper.assertElementDisplayed(phoneInput, "Поле 'Номер' не отображается");
         TestHelper.assertElementDisplayed(sumInput, "Поле 'Сумма' не отображается");

@@ -1,5 +1,8 @@
-package ru.astondev.lesson16;
+package ru.astondev.lesson16.utils;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class TestHelper {
@@ -16,6 +19,19 @@ public class TestHelper {
             throw new AssertionError(errorMessage);
         } else {
             System.out.println("Тест пройден успешно. Элемент отображается.");
+        }
+    }
+
+    // Метод для принятия условий Cookie
+    public static void handleCookiePopup(WebDriver webDriver) {
+        try {
+            WebElement cookieButton = webDriver.findElement(By.xpath("//button[@id='cookie-agree']"));
+            if (cookieButton.isDisplayed()) {
+                cookieButton.click();
+                System.out.println("Cookie окно найдено и закрыто.");
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("Cookie окно не найдено. Продолжаем выполнение тестов.");
         }
     }
 }
