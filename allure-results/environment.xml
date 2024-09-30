@@ -1,0 +1,18 @@
+<environment>
+    <parameter>
+        <key>Browser</key>
+        <value>Google Chrome</value>
+    </parameter>
+    <parameter>
+        <key>Browser.Version</key>
+        <value>129.0.6668.69</value>
+    </parameter>
+    <parameter>
+        <key>Operating.System</key>
+        <value>Windows 11 Pro</value>
+    </parameter>
+    <parameter>
+        <key>Operating.System.Version</key>
+        <value>23H2</value>
+    </parameter>
+</environment>
